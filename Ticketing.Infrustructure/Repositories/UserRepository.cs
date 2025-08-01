@@ -11,6 +11,15 @@ namespace Ticketing.Infrustructure.Repositories
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
+        public async Task<List<UserSummaryInfo>> GetSummaryInfo()
+        {
+            return (await _context.Users.ToListAsync()).Select(u=>new UserSummaryInfo(){Id=u.Id,FullName = u.FullName}).ToList();
+        }
+        public async Task<List<UserSummaryInfo>> GetSummaryInfoByIds(List<Guid>ids)
+        {
+            return (await _context.Users.Where(d=>ids.Contains(d.Id)).ToListAsync()).Select(u => new UserSummaryInfo() { Id = u.Id, FullName = u.FullName }).ToList();
+        }
+
         public async Task<User> GetByEmailAndPassword(string email, string password)
         {
             var currentUser = await GetByEmail(email);

@@ -13,9 +13,10 @@ namespace Ticketing.Infrustructure.Repositories
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(TKey id)
+        public async Task DeleteAsync(T entity)
         {
-            throw new NotImplementedException();
+            dbContext.Set<T>().Remove(entity);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<List<T>> GetAllAsync()
@@ -25,12 +26,13 @@ namespace Ticketing.Infrustructure.Repositories
 
         public async Task<T> GetByIdAsync(TKey id)
         {
-            return await dbContext.Set<T>().FirstOrDefaultAsync();
+            return await dbContext.Set<T>().FindAsync(id);
         }
 
         public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            dbContext.Set<T>().Update(entity);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

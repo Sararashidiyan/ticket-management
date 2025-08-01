@@ -19,6 +19,7 @@ namespace Ticketing.Infrustructure.Mappings
             builder.Property(s => s.UpdatedAt).IsRequired(false);
             builder.Property(s => s.Status).IsRequired();
             builder.Property(s => s.Priority).IsRequired();
+            builder.Ignore(s => s.StatusState);
         }
     }
 }

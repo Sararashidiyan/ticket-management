@@ -22,9 +22,9 @@ namespace Ticketing.Api.Middlewares
             }
             catch (Exception ex)
             {
-                if (ex is CustomException)//Handled exceptions
+                if (ex is BusinessException)//Handled exceptions
                 {
-                    var exception = (CustomException)ex;
+                    var exception = (BusinessException)ex;
                     _logger.LogError(exception, exception.Message);
                     context.Response.StatusCode = exception.StatusCode;
                     await context.Response.WriteAsJsonAsync(new { error = exception.Message });

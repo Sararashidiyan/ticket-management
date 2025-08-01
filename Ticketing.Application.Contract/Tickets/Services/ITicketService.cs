@@ -13,7 +13,7 @@ namespace Ticketing.Application.Contract.Tickets.Services
         Task Delete(Guid id);
         Task<List<TicketDTO>> GetAll();
         Task<TicketDTO> GetById(Guid id);
-        Task<List<TicketDTO>> GetByStatus(string status);
+        Task<int> GetCountByStatus(string status);
         Task<TicketDTO> GetEmployeeTicketById(Guid id);
         Task<List<TicketDTO>> GetEmployeeTickets();
         Task Update(Guid id);

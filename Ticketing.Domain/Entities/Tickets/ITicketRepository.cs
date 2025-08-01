@@ -10,7 +10,7 @@ namespace Ticketing.Domain.Entities.Tickets
     public interface ITicketRepository : IRepository<Guid, Ticket>
     {
         Task<Ticket> GetAssignedTicketByIdAsync(Guid currentUserId, Guid id);
-        Task<List<Ticket>> GetByStatus(Guid currentUserId, string status);
+        Task<int> GetCountByStatus(Guid currentUserId, string status);
         Task<Ticket> GetEmployeeTicketById(Guid id, Guid currentEmployeeId);
         Task<List<Ticket>> GetEmployeeTickets(Guid currentEmployeeId);
         Task<List<Ticket>> GetAssignedTickets(Guid currentUserId);

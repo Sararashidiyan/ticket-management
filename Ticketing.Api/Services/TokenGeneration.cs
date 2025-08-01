@@ -13,7 +13,7 @@ namespace Ticketing.Api.Services
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, userInfo.Email),
-                new Claim("id", userInfo.Id),
+                new Claim("id", userInfo.Id.ToString()),
                 new Claim("fullname", userInfo.FullName),
                 new Claim("email", userInfo.Email),
                 new Claim("role", userInfo.Role),

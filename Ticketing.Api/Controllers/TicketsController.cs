@@ -31,10 +31,10 @@ namespace Ticketing.Api.Controllers
             return await _ticketService.GetAll();
         }
         [Authorize(Roles = "Admin")]
-        [HttpGet("status")]
-        public async Task<List<TicketDTO>> GetByStatus(string status)
+        [HttpGet("status/{status}")]
+        public async Task<int> GetCountByStatus([FromRoute]string status)
         {
-            return await _ticketService.GetByStatus(status);
+            return await _ticketService.GetCountByStatus(status);
         }
         [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
@@ -56,7 +56,6 @@ namespace Ticketing.Api.Controllers
         [HttpPost()]
         public async Task Create([FromBody] CreateTicketDTO item)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             await _ticketService.Create(item);
         }
         [Authorize(Roles = "Employee")]
@@ -66,7 +65,7 @@ namespace Ticketing.Api.Controllers
             return await _ticketService.GetEmployeeTickets();
         }
         [Authorize(Roles = "Employee")]
-        [HttpGet("{id}/my")]
+        [HttpGet("my/{id}")]
         public async Task<TicketDTO> GetEmployeeTicketById([FromRoute] Guid id)
         {
             return await _ticketService.GetEmployeeTicketById(id);

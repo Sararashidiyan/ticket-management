@@ -32,7 +32,7 @@ namespace Ticketing.Application
         private async Task CheckUserAlreadyExist(RegisterDTO item)
         {
             var user = await _repository.GetByEmail(item.Email);
-            if (user == null) throw new UserAlreadyExistException();
+            if (user != null) throw new UserAlreadyExistException();
         }
 
         private void CheckPassword(string password, string confirmPassword)

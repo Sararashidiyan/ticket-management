@@ -52,5 +52,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+    DbSeeder.Seed(dbContext);
+}
 app.Run();

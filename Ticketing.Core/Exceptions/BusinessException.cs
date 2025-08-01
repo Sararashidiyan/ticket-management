@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ticketing.Core.Exceptions
 {
-    public class CustomException:Exception
+    public class BusinessException:Exception
     {
         public int StatusCode { get; private set; }
         public string Message { get;private set; }
-        public CustomException(int statusCode,string message)
+        public BusinessException(int statusCode,string message)
         {
             StatusCode = StatusCode;
             Message = message;

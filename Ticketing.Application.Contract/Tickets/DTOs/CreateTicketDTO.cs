@@ -11,6 +11,6 @@ namespace Ticketing.Application.Contract.Tickets.DTOs
     {
         public string Title { get;  set; }
         public string Description { get;  set; }
-        public TicketPriority Priority { get;  set; }
+        public string Priority { get;  set; }
     }
 }

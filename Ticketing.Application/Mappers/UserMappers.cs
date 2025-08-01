@@ -14,6 +14,7 @@ namespace Ticketing.Application.Mappers
         {
             return new UserDTO
             {
+                Id=user.Id,
                 FullName = user.FullName,
                 Email = user.Email,
                 Role = user.Role.ToString(),

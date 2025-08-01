@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ticketing.Domain.Common;
 using Ticketing.Domain.Contract.Enums;
+using Ticketing.Domain.Entities.Tickets.TicketStates;
 
 namespace Ticketing.Domain.Entities.Tickets
 {
@@ -14,24 +15,30 @@ namespace Ticketing.Domain.Entities.Tickets
         {
             
         }
-        public Ticket(string title,string description, TicketPriority priority)
+        public Ticket(string title,string description, TicketPriority priority,Guid createdByUserId)
         {
             CreatedAt = DateTime.Now;
             Title = title;
             Priority = priority;
             Description = description;
-            //Status
+            CreatedByUserId = createdByUserId;
+            StatusState = new OpenStatusState();
         }
         public void AssignTicketToAdmin(Guid userId)
         {
             AssignedToUserId = userId;
             UpdatedAt = DateTime.Now;
-            //Status
+            StatusState = new InProgressStatusState();
 
         }
         public string Title { get;private set; }
         public string Description { get;private set; }
         public int Status { get;private set; }
+        public TicketStatusState StatusState
+        {
+            get => TicketStatusFactory.Create(Status);
+            private set => Status = TicketStatusFactory.Create(value);
+        }
         public TicketPriority Priority { get;private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }

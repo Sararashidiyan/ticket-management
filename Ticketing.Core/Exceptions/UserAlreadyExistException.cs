@@ -2,7 +2,7 @@
 
 namespace Ticketing.Core.Exceptions
 {
-    public class UserAlreadyExistException : CustomException
+    public class UserAlreadyExistException : BusinessException
     {
         public UserAlreadyExistException() : base(Convert.ToInt32(HttpStatusCode.Conflict), "User already exists")
         {

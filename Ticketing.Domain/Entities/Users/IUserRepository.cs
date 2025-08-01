@@ -11,5 +11,7 @@ namespace Ticketing.Domain.Entities.Users
     {
         Task<User> GetByEmailAndPassword(string email, string password);
         Task<User> GetByEmail(string email);
+        Task<List<UserSummaryInfo>> GetSummaryInfo();
+        Task<List<UserSummaryInfo>> GetSummaryInfoByIds(List<Guid> ids);
     }
 }

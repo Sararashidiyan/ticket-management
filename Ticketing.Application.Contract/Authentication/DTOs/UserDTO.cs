@@ -12,6 +12,6 @@ namespace Ticketing.Application.Contract.Authentication.DTOs
         public string FullName { get;  set; }
         public string Email { get;  set; }
         public string Role { get;  set; }
-        public string Id { get;  set; }
+        public Guid Id { get;  set; }
     }
 }

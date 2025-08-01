@@ -2,7 +2,7 @@
 
 namespace Ticketing.Core.Exceptions
 {
-    public class NotFoundException : CustomException
+    public class NotFoundException : BusinessException
     {
         public NotFoundException() : base(Convert.ToInt32(HttpStatusCode.NotFound), "not found!!!!!!!")
         {

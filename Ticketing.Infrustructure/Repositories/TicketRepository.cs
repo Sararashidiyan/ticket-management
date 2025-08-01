@@ -5,14 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Ticketing.Domain.Entities.Tickets;
+using Ticketing.Domain.Entities.Tickets.TicketStates;
 
 namespace Ticketing.Infrustructure.Repositories
 {
     public class TicketRepository(AppDbContext _context) : BaseRepository<AppDbContext, Guid, Ticket>(_context), ITicketRepository
     {
-        public async Task<List<Ticket>> GetByStatus(Guid currentUserId, string status)
+        public async Task<int> GetCountByStatus(Guid currentUserId, string status)
         {
-            return await _context.Tickets.Where(d => d.Status == 1).ToListAsync();
+            var statusId = TicketStatusFactory.GetTicketStatusState(status);
+            return await _context.Tickets.Where(d => 
+                d.AssignedToUserId == currentUserId && 
+                (statusId == null || d.Status == statusId)).CountAsync();
         }
 
         public async Task<Ticket> GetEmployeeTicketById(Guid id, Guid currentEmployeeId)
