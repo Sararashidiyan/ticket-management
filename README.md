@@ -11,7 +11,7 @@ A sample .NET application demonstrating clean architecture, EF Core integration,
 
 ### Prerequisites
 - [.NET SDK](https://dotnet.microsoft.com/download)
-- SQL Server running locally or in container
+- SQL Server running locally or in container (TicketManagement)
 
 ## 👥 Seeded Users
 
